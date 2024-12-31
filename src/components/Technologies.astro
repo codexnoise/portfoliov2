@@ -1,0 +1,117 @@
+---
+import Javascript from "./icons/Javascript.astro";
+import Node from "./icons/Node.astro";
+import React from "./icons/React.astro";
+import Typescript from "./icons/Typescript.astro";
+import Html5 from "./icons/Html5.astro";
+import Css3 from "./icons/Css3.astro";
+import Flutter from "./icons/Flutter.astro";
+import Dart from "./icons/Dart.astro";
+import Mysql from "./icons/Mysql.astro";
+import Mongodb from "./icons/Mongodb.astro";
+import Postgresql from "./icons/Postgresql.astro";
+import Firebase from "./icons/Firebase.astro";
+import Php from "./icons/Php.astro";
+import Python from "./icons/Python.astro";
+import Next from "./icons/Next.astro";
+import Git from "./icons/Git.astro";
+---
+
+<div class="container mx-auto px-4">
+  <div class="[&>p]:mb-4 text-pretty order-2 md:order-1">
+    <p>
+      A lo largo de mi trayectoria, he adquirido experiencia en un amplio
+      abanico de tecnologías, lo que me permite abordar proyectos con diversas
+      necesidades y encontrar la solución más adecuada en cada caso. A
+      continuación, se muestran las principales herramientas y lenguajes con los
+      que trabajo:
+    </p>
+  </div>
+  <div class="row flex flex-wrap gap-5 text-center">
+    <div class="flex flex-col items-center">
+      <Flutter class="size-12" />
+      <span class="mt-1 text-sm">Flutter</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Dart class="size-12" />
+      <span class="mt-1 text-sm">Dart</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Firebase class="size-12" />
+      <span class="mt-1 text-sm">Firebase</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <React class="size-12" />
+      <span class="mt-1 text-sm">React</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Next class="size-12" />
+      <span class="mt-1 text-sm">Next.js</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Typescript class="size-12" />
+      <span class="mt-1 text-sm">TypeScript</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Javascript class="size-12" />
+      <span class="mt-1 text-sm">JavaScript</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Node class="size-12" />
+      <span class="mt-1 text-sm">Node.js</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Html5 class="size-12" />
+      <span class="mt-1 text-sm">HTML5</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Css3 class="size-12" />
+      <span class="mt-1 text-sm">CSS3</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Php class="size-12" />
+      <span class="mt-1 text-sm">PHP</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Python class="size-12" />
+      <span class="mt-1 text-sm">Python</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Mysql class="size-12" />
+      <span class="mt-1 text-sm">MySQL</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Postgresql class="size-12" />
+      <span class="mt-1 text-sm">PostgreSQL</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Mongodb class="size-12" />
+      <span class="mt-1 text-sm">MongoDB</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <Git class="size-12" />
+      <span class="mt-1 text-sm">Git</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined")
+      return localStorage.getItem("theme") ?? "system";
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+
+  const getCurrentTheme = () => {
+    const themePreference = getThemePreference();
+    const isDark =
+      themePreference === "dark" ||
+      (themePreference === "system" &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+    return isDark ? "dark" : "light";
+  };
+</script>
