@@ -104,24 +104,3 @@ import Cplusplus from "./icons/Cplusplus.astro";
     </div>
   </div>
 </div>
-
-<script>
-  const getThemePreference = () => {
-    if (typeof localStorage !== "undefined")
-      return localStorage.getItem("theme") ?? "system";
-
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  };
-
-  const getCurrentTheme = () => {
-    const themePreference = getThemePreference();
-    const isDark =
-      themePreference === "dark" ||
-      (themePreference === "system" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-
-    return isDark ? "dark" : "light";
-  };
-</script>
