@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://codexnoise.github.io/portfoliov2/sitemap-index.xml
+Sitemap: https://codexnoise.github.io/sitemap-index.xml
