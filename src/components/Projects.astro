@@ -1,40 +1,49 @@
 ---
 import GitHub from "./icons/GitHub.astro"
-import NextJS from "./icons/NextJS.astro"
-import Tailwind from "./icons/Tailwind.astro"
 import Link from "./icons/Link.astro"
 import LinkButton from "./LinkButton.astro"
+import Flutter from "./icons/Flutter.astro"
+import Dart from "./icons/Dart.astro"
+import Firebase from "./icons/Firebase.astro"
+import GoogleCloud from "./icons/GoogleCloud.astro"
+import Riverpod from "./icons/Riverpod.astro"
 
 const TAGS = {
-  NEXT: {
-    name: "Next.js",
-    class: "bg-black text-white",
-    icon: NextJS,
+  FLUTTER: {
+    name: "Flutter",
+    class: "bg-[#02569B] text-white",
+    icon: Flutter,
   },
-  TAILWIND: {
-    name: "Tailwind CSS",
-    class: "bg-[#003159] text-white",
-    icon: Tailwind,
+  DART: {
+    name: "Dart",
+    class: "bg-[#0175C2] text-white",
+    icon: Dart,
+  },
+  FIREBASE: {
+    name: "Firebase",
+    class: "bg-[#1A73E8] text-white",
+    icon: Firebase,
+  },
+  GCP: {
+    name: "Google Cloud",
+    class: "bg-[#4285F4] text-white",
+    icon: GoogleCloud,
+  },
+  RIVERPOD: {
+    name: "Riverpod",
+    class: "bg-[#0553B1] text-white",
+    icon: Riverpod,
   },
 }
 const PROJECTS = [
   {
     title: "TruequeApp",
     description:
-      "Descripción del proyecto. Reemplaza este texto con la información real de tu proyecto personal.",
-    link: "https://proyecto1.demo.com",
-    github: "https://github.com/diegovore/proyecto1",
-    image: "/projects/project1.webp",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
-  },
-  {
-    title: "Proyecto Ejemplo 2",
-    description:
-      "Descripción del proyecto. Reemplaza este texto con la información real de tu proyecto personal.",
-    link: "https://proyecto2.demo.com",
-    github: "https://github.com/diegovore/proyecto2",
-    image: "/projects/project2.webp",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+      "Aplicación móvil sin fines de lucro que facilita el intercambio y donación de objetos entre usuarios, promoviendo el consumo sustentable, la reutilización y la economía circular. Incluye mensajería interna, notificaciones push, almacenamiento de imágenes en la nube y autenticación con Firebase.",
+    link: "https://app-truequeapp.netlify.app/",
+    github: "https://github.com/codexnoise/truequeapp",
+    image: "/projects/truequeapp.webp",
+    tags: [TAGS.FLUTTER, TAGS.DART, TAGS.FIREBASE, TAGS.GCP, TAGS.RIVERPOD],
   },
 ]
 ---
