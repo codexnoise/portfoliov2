@@ -11,27 +11,22 @@ import Riverpod from "./icons/Riverpod.astro"
 const TAGS = {
   FLUTTER: {
     name: "Flutter",
-    class: "bg-[#02569B] text-white",
     icon: Flutter,
   },
   DART: {
     name: "Dart",
-    class: "bg-[#0175C2] text-white",
     icon: Dart,
   },
   FIREBASE: {
     name: "Firebase",
-    class: "bg-[#1A73E8] text-white",
     icon: Firebase,
   },
   GCP: {
     name: "Google Cloud",
-    class: "bg-[#4285F4] text-white",
     icon: GoogleCloud,
   },
   RIVERPOD: {
     name: "Riverpod",
-    class: "bg-[#0553B1] text-white",
     icon: Riverpod,
   },
 }
@@ -67,9 +62,9 @@ const PROJECTS = [
           {tags.map((tag) => (
             <li>
               <span
-                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+                class="flex items-center gap-x-2 rounded-full text-xs py-1 px-2 whitespace-nowrap bg-gray-100 text-gray-800 border border-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"
               >
-                <tag.icon class="size-4" />
+                <tag.icon class="size-4 shrink-0" />
                 {tag.name}
               </span>
             </li>

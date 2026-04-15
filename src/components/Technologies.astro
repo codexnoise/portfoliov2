@@ -18,6 +18,8 @@ import Git from "./icons/Git.astro";
 import Docker from "./icons/Docker.astro" 
 import Gemini from "./icons/Gemini.astro"
 import Tailwindcss from "./icons/Tailwindcss.astro"
+import AwsLight from "./icons/AwsLight.astro"
+import AwsDark from "./icons/AwsDark.astro"
 ---
 
 <div class="container mx-auto px-4">
@@ -94,6 +96,11 @@ import Tailwindcss from "./icons/Tailwindcss.astro"
     <div class="flex flex-col items-center">
       <Mongodb class="size-12" />
       <span class="mt-1 text-sm">MongoDB</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <AwsLight class="size-12 block dark:hidden" />
+      <AwsDark class="size-12 hidden dark:block" />
+      <span class="mt-1 text-sm">AWS</span>
     </div>
     <div class="flex flex-col items-center">
       <Docker class="size-12" />
