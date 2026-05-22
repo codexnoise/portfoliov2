@@ -7,6 +7,7 @@ import Dart from "./icons/Dart.astro"
 import Firebase from "./icons/Firebase.astro"
 import GoogleCloud from "./icons/GoogleCloud.astro"
 import Riverpod from "./icons/Riverpod.astro"
+import Node from "./icons/Node.astro"
 
 const TAGS = {
   FLUTTER: {
@@ -29,6 +30,10 @@ const TAGS = {
     name: "Riverpod",
     icon: Riverpod,
   },
+  NODE: {
+    name: "Node.js",
+    icon: Node,
+  },
 }
 const PROJECTS = [
   {
@@ -38,7 +43,7 @@ const PROJECTS = [
     link: "https://app-truequeapp.netlify.app/",
     github: "https://github.com/codexnoise/truequeapp",
     image: "/projects/truequeapp.webp",
-    tags: [TAGS.FLUTTER, TAGS.DART, TAGS.FIREBASE, TAGS.GCP, TAGS.RIVERPOD],
+    tags: [TAGS.FLUTTER, TAGS.DART, TAGS.NODE, TAGS.FIREBASE, TAGS.GCP, TAGS.RIVERPOD],
   },
 ]
 ---
@@ -58,7 +63,7 @@ const PROJECTS = [
       {title}
     </h3>
     <div class="flex flex-wrap mt-2">
-      <ul class="flex flex-row mb-2 gap-x-2">
+      <ul class="flex flex-row flex-wrap mb-2 gap-2">
           {tags.map((tag) => (
             <li>
               <span
