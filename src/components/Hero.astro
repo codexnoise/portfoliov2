@@ -6,21 +6,11 @@ import MailIcon from "@/components/icons/Mail.astro"
 import SocialPill from "@/components/SocialPill.astro"
 import Download from "./icons/Download.astro"
 
-// Function to calculate years of experience from October 2021
 function calculateExperienceYears(): string {
   const startDate = new Date('2021-10-01')
-  const endDate = new Date();
-
-  if (isNaN(endDate.getTime())) {
-    throw new Error('Fecha final inválida')
-  }
-
-  const diffInMilliseconds = endDate.getTime() - startDate.getTime()
-  const diffInYears = diffInMilliseconds / (1000 * 60 * 60 * 24 * 365.25)
-
-  const rounded = Math.ceil(diffInYears * 2) / 2
-
-  return rounded.toFixed(1);
+  const diffInMs = Date.now() - startDate.getTime()
+  const years = Math.round(diffInMs / (1000 * 60 * 60 * 24 * 365.25))
+  return `+${years}`
 }
 
 const experienceYears = calculateExperienceYears()
@@ -53,15 +43,15 @@ const experienceYears = calculateExperienceYears()
   <h3
     class="text-3xl font-bold tracking-tight text-gray-800 sm:text-4xl dark:text-white"
   >
-    Desarrollador Full-Stack
+    Full Stack & Mobile Engineer
   </h3>
   <p
     class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
   >
     {experienceYears} años de experiencia. <strong
-      >Desarrollador Full-Stack e Ingeniero de Software</strong
-    >  de Cuenca, Ecuador 🇪🇨. Especializado en el desarrollo de 
-       soluciones tecnológicas innovadoras.
+      >Full Stack & Mobile Engineer</strong
+    > de Cuenca, Ecuador 🇪🇨. Especializado en desarrollo mobile con Flutter y
+    aplicaciones full stack, con experiencia en Fintech, ERPs y plataformas SaaS.
   </p>
   <nav class="flex flex-wrap gap-4 mt-8">
     <SocialPill href="mailto:diegovo@outlook.com">
