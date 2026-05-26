@@ -8,53 +8,42 @@ import Firebase from "./icons/Firebase.astro"
 import GoogleCloud from "./icons/GoogleCloud.astro"
 import Riverpod from "./icons/Riverpod.astro"
 import Node from "./icons/Node.astro"
+import { getLocale, useTranslations } from "@/i18n"
+
+const locale = getLocale(Astro.url)
+const t = useTranslations(locale)
 
 const TAGS = {
-  FLUTTER: {
-    name: "Flutter",
-    icon: Flutter,
-  },
-  DART: {
-    name: "Dart",
-    icon: Dart,
-  },
-  FIREBASE: {
-    name: "Firebase",
-    icon: Firebase,
-  },
-  GCP: {
-    name: "Google Cloud",
-    icon: GoogleCloud,
-  },
-  RIVERPOD: {
-    name: "Riverpod",
-    icon: Riverpod,
-  },
-  NODE: {
-    name: "Node.js",
-    icon: Node,
-  },
+  FLUTTER: { name: "Flutter", icon: Flutter },
+  DART: { name: "Dart", icon: Dart },
+  FIREBASE: { name: "Firebase", icon: Firebase },
+  GCP: { name: "Google Cloud", icon: GoogleCloud },
+  RIVERPOD: { name: "Riverpod", icon: Riverpod },
+  NODE: { name: "Node.js", icon: Node },
 }
-const PROJECTS = [
-  {
-    title: "TruequeApp",
-    description:
-      "Aplicación móvil sin fines de lucro que facilita el intercambio y donación de objetos entre usuarios, promoviendo el consumo sustentable, la reutilización y la economía circular. Incluye mensajería interna, notificaciones push, almacenamiento de imágenes en la nube y autenticación con Firebase.",
+
+const PROJECT_META = {
+  truequeapp: {
     link: "https://app-truequeapp.netlify.app/",
     github: "https://github.com/codexnoise/truequeapp",
     image: "/projects/truequeapp.webp",
     tags: [TAGS.FLUTTER, TAGS.DART, TAGS.NODE, TAGS.FIREBASE, TAGS.GCP, TAGS.RIVERPOD],
   },
-]
+} as const
+
+const PROJECTS = t.projects.items.map((p) => ({
+  ...p,
+  ...PROJECT_META[p.id as keyof typeof PROJECT_META],
+}))
 ---
 
 <div class="flex flex-col gap-y-16">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
+    PROJECTS.map(({ image, title, description, tags, link, github, imageAlt }) => (
     <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
   <div class="w-full md:w-1/2">
     <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt={`Captura de ${title}`} class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+      <img alt={imageAlt} class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
     </div>
   </div>
 
@@ -81,14 +70,13 @@ const PROJECTS = [
           {github && (
             <LinkButton href={github}>
               <GitHub class="size-6" />
-              Code
-              
+              {t.common.buttons.code}
             </LinkButton>
           )}
           {link && (
             <LinkButton href={link}>
               <Link class="size-4" />
-              Preview
+              {t.common.buttons.preview}
             </LinkButton>
           )}
         </footer>
@@ -98,6 +86,3 @@ const PROJECTS = [
     ))
   }
 </div>
-
-
-

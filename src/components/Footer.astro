@@ -1,5 +1,9 @@
 ---
+import { getLocale, useTranslations } from "@/i18n"
+
 const currentYear = new Date().getFullYear()
+const locale = getLocale(Astro.url)
+const t = useTranslations(locale)
 ---
 
 <footer
@@ -9,8 +13,7 @@ const currentYear = new Date().getFullYear()
     class="rounded-lg w-full max-w-screen-xl mx-auto md:flex md:items-center md:justify-between py-4"
   >
     <span class="text-sm sm:text-center text-zinc-800/90 dark:text-zinc-200/90"
-      >© {currentYear}
-      Todos los derechos reservados
+      >© {currentYear} {t.common.footer.rights}
     </span>
   </div>
 </footer>

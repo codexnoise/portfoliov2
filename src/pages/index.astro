@@ -12,12 +12,12 @@ import Technologies from "@/components/Technologies.astro"
 import SectionContainer from "@/components/SectionContainer.astro"
 import Hero from "@/components/Hero.astro"
 import TitleSection from "@/components/TitleSection.astro"
+import { useTranslations } from "@/i18n"
+
+const t = useTranslations('es')
 ---
 
-<Layout
-  title="Portfolio de Diego Velesaca Orellana - Full Stack & Mobile Engineer"
-  description="Full Stack & Mobile Engineer | Flutter · Node.js · TypeScript · React | Experiencia en Fintech, ERPs y plataformas SaaS"
->
+<Layout title={t.home.meta.title} description={t.home.meta.description}>
   <main class="px-4">
     <SectionContainer class="py-16 md:py-36">
       <Hero />
@@ -26,21 +26,21 @@ import TitleSection from "@/components/TitleSection.astro"
     <SectionContainer id="experiencia">
       <TitleSection>
         <Briefcase class="size-8" />
-        Experiencia laboral
+        {t.common.sections.experience}
       </TitleSection>
       <Experience />
     </SectionContainer>
     <SectionContainer id="proyectos">
       <TitleSection>
         <Rocket class="size-8" />
-        Proyectos personales
+        {t.common.sections.projects}
       </TitleSection>
       <Projects />
     </SectionContainer>
     <SectionContainer id="tecnologias">
       <TitleSection>
         <CodeIcon class="size-7" />
-        Tecnologías
+        {t.common.sections.technologies}
       </TitleSection>
       <Technologies />
     </SectionContainer>
@@ -48,7 +48,7 @@ import TitleSection from "@/components/TitleSection.astro"
     <SectionContainer id="sobre-mi">
       <TitleSection>
         <ProfileCheck class="size-8" />
-        Sobre mí
+        {t.common.sections.about}
       </TitleSection>
       <AboutMe />
     </SectionContainer>

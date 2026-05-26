@@ -1,29 +1,35 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro"
+import LanguageSwitcher from "./LanguageSwitcher.astro"
+import { getLocale, localizedPath, useTranslations } from "@/i18n"
+
+const locale = getLocale(Astro.url)
+const t = useTranslations(locale)
+const home = localizedPath('/', locale)
 
 const navItems = [
   {
-    title: "Experiencia",
+    title: t.common.nav.experience,
     label: "experiencia",
-    url: "/#experiencia",
+    url: `${home}#experiencia`,
   },
   {
-    title: "Proyectos",
+    title: t.common.nav.projects,
     label: "proyectos",
-    url: "/#proyectos",
+    url: `${home}#proyectos`,
   },
   {
-    title: "Tecnologías",
+    title: t.common.nav.technologies,
     label: "tecnologias",
-    url: "/#tecnologias",
+    url: `${home}#tecnologias`,
   },
   {
-    title: "Sobre mí",
+    title: t.common.nav.about,
     label: "sobre-mi",
-    url: "/#sobre-mi",
+    url: `${home}#sobre-mi`,
   },
   {
-    title: "Contacto",
+    title: t.common.nav.contact,
     label: "contacto",
     url: "mailto:diegovo@outlook.com",
   },
@@ -48,6 +54,7 @@ const navItems = [
       ))
     }
     <ThemeToggle />
+    <LanguageSwitcher />
   </nav>
 </header>
 

@@ -1,71 +1,47 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro"
-const EXPERIENCE = [
-  {
-    date: "Febrero 2026 - Actualidad",
-    title: "Full Stack & Mobile Engineer",
-    company: "GiftPoint",
-    description:
-      "Como Full Stack & Mobile Engineer, construyo y evoluciono una plataforma B2B de gift cards digitales e incentivos corporativos de alto tráfico, presente en +11 países de LATAM. Mi día a día combina el desarrollo de nuevas funcionalidades end-to-end —backend con Node.js y TypeScript, frontend y app mobile con Flutter— con la optimización y refactorización del código existente para mantener la plataforma rápida, escalable y mantenible, además de la resolución de bugs en producción. Trabajo de forma autónoma en las decisiones de implementación, arquitectura y refactors, validándolas con el CTO y coordinando con producto, marketing y operaciones para que cada solución aporte valor real al negocio. Dentro del equipo soy referente técnico, especialmente en desarrollo mobile con Flutter y en buenas prácticas de arquitectura.",
-  },
-  {
-    date: "Agosto 2024 - Enero 2026",
-    title: "Multi-platform Mobile Developer",
-    company: "Dycotein | Fintech",
-    description:
-      "Como Multi-platform Mobile Developer me especialicé en Flutter y me convertí en el segundo al mando y referente técnico del equipo mobile de una fintech B2B que construye software para banca, cooperativas y mutualistas. Mi mayor reto fue diseñar desde cero la arquitectura de una aplicación completa de banca virtual para personas, llevándola desde el concepto hasta producción. También lideré la migración de tres aplicaciones de WebView/React Native a Flutter, elevando el rendimiento, la mantenibilidad y la experiencia de usuario de productos usados a diario por miles de socios de cooperativas, con un alto volumen de transacciones financieras. Aquí confirmé por qué disfruto tanto el mobile: en una pantalla pequeña cada decisión cuenta, y un código bien estructurado marca la diferencia entre una app que escala y una que se reescribe. Trabajé siempre bajo principios de clean code y arquitectura limpia, en un entorno regulado con altos estándares de seguridad (ISO 27001).",
-  },
-  {
-    date: "Marzo 2024 - Julio 2024",
-    title: "Full-Stack Software Developer",
-    company: "Dycotein | Fintech",
-    description:
-      "Desarrollo full stack de productos digitales para el sector financiero (banca, cooperativas y mutualistas) en una fintech B2B bajo estándares de seguridad ISO 27001. Implementé funcionalidades de backend y frontend para plataformas transaccionales y de canales digitales, con foco en seguridad, escalabilidad y confiabilidad. Colaboré con equipos multidisciplinarios (arquitectura, QA y células de desarrollo) participando en todo el ciclo de desarrollo y aplicando clean code y buenas prácticas de ingeniería para entregar software de calidad en un entorno regulado. En esta etapa inicié mi especialización en Flutter, que más adelante se convertiría en mi rol como Multi-platform Mobile Developer.",
-  },
-  {
-    date: "Octubre 2021 - Febrero 2024",
-    title: "Software Developer",
-    company: "Acatha",
-    description:
-      "Mi primer rol formal como desarrollador, en una plataforma SaaS de ERP, contabilidad y facturación electrónica para PyMEs (hoy presente en 4 países de LATAM). Entré como Junior y crecí de forma autodidacta hasta asumir responsabilidades clave en el equipo. Participé activamente en la migración y modernización de un sistema legacy: en el backend contribuí a actualizar el lenguaje y framework (PHP) a su versión más reciente, logrando una mejora del 25% en la velocidad de respuesta de APIs y microservicios; en el frontend lideré la migración a React 16+, optimizando el rendimiento de la interfaz y mejorando significativamente la experiencia del usuario final. Aquí aprendí el oficio y descubrí mi convicción de que todo gran producto se sostiene sobre un código bien escrito: la base que sigo aplicando hasta hoy.",
-  },
-  {
-    date: "Octubre 2016 - Diciembre 2019",
-    title: "Ingeniero de Desarrollo",
-    company: "Procelec Cia. Ltda",
-    description:
-      "Como Ingeniero de Desarrollo trabajé en soluciones IoT para el sector de tránsito y movilidad, en la intersección entre software y hardware. Diseñé y desarrollé firmware para sistemas embebidos, implementando las funcionalidades clave de los dispositivos, y participé en el diseño de hardware de proyectos IoT cubriendo todo el ciclo: desde la conceptualización hasta la implementación. Esta etapa me dio una base sólida en cómo funciona la tecnología \"por debajo\", una perspectiva que sigo aplicando hoy al construir software.",
-  },
-]
+import { getLocale, useTranslations } from "@/i18n"
+
+const locale = getLocale(Astro.url)
+const t = useTranslations(locale)
+const EXPERIENCE = t.experience.items
 ---
 
 <ol class="relative">
   {
     EXPERIENCE.map((experience) => (
       <li class="">
-        <ExperienceItem {...experience} />
+        <ExperienceItem {...experience} seeMore={t.common.buttons.seeMore} seeLess={t.common.buttons.seeLess} learnMore={t.common.buttons.learnMore} />
       </li>
     ))
   }
 </ol>
 
-<script>
-  document.addEventListener("astro:page-load", () => {
+<script is:inline data-i18n-experience>
+  function bindExperienceToggles() {
     document
-      .querySelectorAll<HTMLButtonElement>(".description-toggle")
+      .querySelectorAll('.description-toggle')
       .forEach((btn) => {
-        const clamp = btn.previousElementSibling as HTMLElement | null
+        if (btn.dataset.bound === 'true') return
+        const clamp = btn.previousElementSibling
         if (!clamp) return
 
         if (clamp.scrollHeight <= clamp.clientHeight + 1) return
         btn.hidden = false
+        btn.dataset.bound = 'true'
 
-        btn.addEventListener("click", () => {
-          const isOpen = btn.dataset.state === "open"
-          clamp.classList.toggle("line-clamp-3", isOpen)
-          btn.dataset.state = isOpen ? "closed" : "open"
-          btn.textContent = isOpen ? "Ver más" : "Ver menos"
+        const seeMore = btn.dataset.seeMore || 'Ver más'
+        const seeLess = btn.dataset.seeLess || 'Ver menos'
+
+        btn.addEventListener('click', () => {
+          const isOpen = btn.dataset.state === 'open'
+          clamp.classList.toggle('line-clamp-3', isOpen)
+          btn.dataset.state = isOpen ? 'closed' : 'open'
+          btn.textContent = isOpen ? seeMore : seeLess
         })
       })
-  })
+  }
+
+  document.addEventListener('astro:page-load', bindExperienceToggles)
+  document.addEventListener('astro:after-swap', bindExperienceToggles)
 </script>
