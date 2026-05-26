@@ -28,7 +28,10 @@
     "rights": "Todos los derechos reservados"
   },
   "theme": {
-    "label": "Elige el tema"
+    "label": "Elige el tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema"
   },
   "language": {
     "label": "Cambiar idioma"
