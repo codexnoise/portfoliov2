@@ -1,0 +1,11 @@
+{
+  "intro": "A lo largo de mi trayectoria, he adquirido experiencia en un amplio abanico de tecnologías, lo que me permite abordar proyectos con diversas necesidades y encontrar la solución más adecuada en cada caso. A continuación, se muestran los principales lenguajes de programación, frameworks y herramientas con los que he trabajado.",
+  "items": [
+    {
+      "id": "truequeapp",
+      "title": "TruequeApp",
+      "description": "Aplicación móvil sin fines de lucro que facilita el intercambio y donación de objetos entre usuarios, promoviendo el consumo sustentable, la reutilización y la economía circular. Incluye mensajería interna, notificaciones push, almacenamiento de imágenes en la nube y autenticación con Firebase.",
+      "imageAlt": "Captura de TruequeApp"
+    }
+  ]
+}

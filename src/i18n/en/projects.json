@@ -1,0 +1,11 @@
+{
+  "intro": "Throughout my career, I've gained experience across a wide range of technologies, which allows me to approach projects with diverse requirements and find the most suitable solution in each case. Below are the main programming languages, frameworks and tools I've worked with.",
+  "items": [
+    {
+      "id": "truequeapp",
+      "title": "TruequeApp",
+      "description": "A non-profit mobile app that enables item exchange and donation between users, promoting sustainable consumption, reuse and the circular economy. It includes in-app messaging, push notifications, cloud image storage and Firebase authentication.",
+      "imageAlt": "TruequeApp screenshot"
+    }
+  ]
+}

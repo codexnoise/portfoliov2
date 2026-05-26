@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "date": "February 2026 - Present",
+      "title": "Full Stack & Mobile Engineer",
+      "company": "GiftPoint",
+      "description": "As a Full Stack & Mobile Engineer, I build and evolve a high-traffic B2B digital gift cards and corporate incentives platform present in 11+ countries across LATAM. My day-to-day combines developing new end-to-end features —backend with Node.js and TypeScript, frontend and mobile app with Flutter— with optimizing and refactoring the existing codebase to keep the platform fast, scalable and maintainable, plus resolving bugs in production. I work autonomously on implementation, architecture and refactor decisions, validating them with the CTO and coordinating with product, marketing and operations so that every solution delivers real business value. Within the team I'm a technical reference, especially in mobile development with Flutter and architecture best practices."
+    },
+    {
+      "date": "August 2024 - January 2026",
+      "title": "Multi-platform Mobile Developer",
+      "company": "Dycotein | Fintech",
+      "description": "As a Multi-platform Mobile Developer, I specialized in Flutter and became the second-in-command and technical reference of the mobile team at a B2B fintech building software for banks, credit unions and mutual societies. My biggest challenge was designing from scratch the architecture of a complete personal digital banking app, taking it from concept to production. I also led the migration of three apps from WebView/React Native to Flutter, raising the performance, maintainability and user experience of products used daily by thousands of credit union members, with a high volume of financial transactions. Here I confirmed why I enjoy mobile so much: on a small screen every decision counts, and well-structured code is the difference between an app that scales and one that gets rewritten. I always worked under clean code and clean architecture principles, in a regulated environment with high security standards (ISO 27001)."
+    },
+    {
+      "date": "March 2024 - July 2024",
+      "title": "Full-Stack Software Developer",
+      "company": "Dycotein | Fintech",
+      "description": "Full stack development of digital products for the financial sector (banks, credit unions and mutual societies) at a B2B fintech under ISO 27001 security standards. I implemented backend and frontend features for transactional and digital channel platforms, focused on security, scalability and reliability. I collaborated with multidisciplinary teams (architecture, QA and development cells) taking part in the entire development cycle and applying clean code and engineering best practices to deliver quality software in a regulated environment. In this stage I began my specialization in Flutter, which would later become my role as Multi-platform Mobile Developer."
+    },
+    {
+      "date": "October 2021 - February 2024",
+      "title": "Software Developer",
+      "company": "Acatha",
+      "description": "My first formal role as a developer, at a SaaS platform for ERP, accounting and electronic invoicing for SMBs (today present in 4 countries across LATAM). I joined as a Junior and grew self-taught into key responsibilities within the team. I actively took part in the migration and modernization of a legacy system: on the backend I contributed to upgrading the language and framework (PHP) to its latest version, achieving a 25% improvement in API and microservice response speed; on the frontend I led the migration to React 16+, optimizing interface performance and significantly improving the end-user experience. Here I learned the craft and discovered my conviction that every great product is built on well-written code: the foundation I still apply today."
+    },
+    {
+      "date": "October 2016 - December 2019",
+      "title": "Development Engineer",
+      "company": "Procelec Cia. Ltda",
+      "description": "As a Development Engineer, I worked on IoT solutions for the transit and mobility sector, at the intersection of software and hardware. I designed and developed firmware for embedded systems, implementing the key features of the devices, and took part in the hardware design of IoT projects covering the full cycle: from concept to implementation. This stage gave me a solid foundation in how technology works \"under the hood\", a perspective I still apply today when building software."
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+---
+import Layout from "@/layouts/Layout.astro"
+
+import AboutMe from "@/components/AboutMe.astro"
+import Briefcase from "@/components/icons/Briefcase.astro"
+import CodeIcon from "@/components/icons/Code.astro"
+import Experience from "@/components/Experience.astro"
+import ProfileCheck from "@/components/icons/ProfileCheck.astro"
+import Projects from "@/components/Projects.astro"
+import Rocket from "@/components/icons/Rocket.astro"
+import Technologies from "@/components/Technologies.astro"
+import SectionContainer from "@/components/SectionContainer.astro"
+import Hero from "@/components/Hero.astro"
+import TitleSection from "@/components/TitleSection.astro"
+import { useTranslations } from "@/i18n"
+
+const t = useTranslations('en')
+---
+
+<Layout title={t.home.meta.title} description={t.home.meta.description}>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-36">
+      <Hero />
+    </SectionContainer>
+    <div class="space-y-24">
+    <SectionContainer id="experiencia">
+      <TitleSection>
+        <Briefcase class="size-8" />
+        {t.common.sections.experience}
+      </TitleSection>
+      <Experience />
+    </SectionContainer>
+    <SectionContainer id="proyectos">
+      <TitleSection>
+        <Rocket class="size-8" />
+        {t.common.sections.projects}
+      </TitleSection>
+      <Projects />
+    </SectionContainer>
+    <SectionContainer id="tecnologias">
+      <TitleSection>
+        <CodeIcon class="size-7" />
+        {t.common.sections.technologies}
+      </TitleSection>
+      <Technologies />
+    </SectionContainer>
+
+    <SectionContainer id="sobre-mi">
+      <TitleSection>
+        <ProfileCheck class="size-8" />
+        {t.common.sections.about}
+      </TitleSection>
+      <AboutMe />
+    </SectionContainer>
+  </div>
+  </main>
+</Layout>
