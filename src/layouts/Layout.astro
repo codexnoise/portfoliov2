@@ -4,6 +4,7 @@ import "@fontsource-variable/onest"
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
 import { ViewTransitions } from "astro:transitions"
+import { getLocale, alternateUrls, LOCALES } from "@/i18n"
 
 interface Props {
   title: string
@@ -11,17 +12,51 @@ interface Props {
 }
 
 const { description, title } = Astro.props
+const locale = getLocale(Astro.url)
+const alternates = alternateUrls(Astro.url)
+const siteOrigin = Astro.site?.origin ?? ''
+const ogLocale = locale === 'es' ? 'es_ES' : 'en_US'
+const ogLocaleAlternate = locale === 'es' ? 'en_US' : 'es_ES'
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
+    <script is:inline>
+      (function () {
+        try {
+          var pref = localStorage.getItem('preferred_lang')
+          if (pref !== 'es' && pref !== 'en') return
+          var path = location.pathname
+          var isEn = path === '/en' || path === '/en/' || path.indexOf('/en/') === 0
+          var current = isEn ? 'en' : 'es'
+          if (current === pref) return
+          var next
+          if (pref === 'en') {
+            next = path === '/' ? '/en/' : '/en' + path
+          } else {
+            next = path === '/en' || path === '/en/' ? '/' : path.slice(3)
+          }
+          location.replace(next + location.search + location.hash)
+        } catch (_) {}
+      })()
+    </script>
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    {
+      LOCALES.map((l) => (
+        <link rel="alternate" hreflang={l} href={`${siteOrigin}${alternates[l]}`} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={`${siteOrigin}${alternates.es}`} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlternate} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <ViewTransitions />
   </head>
 

@@ -18,17 +18,17 @@ import Git from "./icons/Git.astro";
 import Docker from "./icons/Docker.astro" 
 import Gemini from "./icons/Gemini.astro"
 import Tailwindcss from "./icons/Tailwindcss.astro"
+import AwsLight from "./icons/AwsLight.astro"
+import AwsDark from "./icons/AwsDark.astro"
+import { getLocale, useTranslations } from "@/i18n"
+
+const locale = getLocale(Astro.url)
+const t = useTranslations(locale)
 ---
 
 <div class="container mx-auto px-4">
   <div class="[&>p]:mb-4 text-pretty order-2 md:order-1">
-    <p>
-      A lo largo de mi trayectoria, he adquirido experiencia en un amplio
-      abanico de tecnologías, lo que me permite abordar proyectos con diversas
-      necesidades y encontrar la solución más adecuada en cada caso. A
-      continuación, se muestran los principales lenguajes de programación, 
-      frameworks y herramientas con los que he trabajado.
-    </p>
+    <p>{t.projects.intro}</p>
   </div>
   <div class="row flex flex-wrap gap-5 text-center">
     <div class="flex flex-col items-center">
@@ -94,6 +94,11 @@ import Tailwindcss from "./icons/Tailwindcss.astro"
     <div class="flex flex-col items-center">
       <Mongodb class="size-12" />
       <span class="mt-1 text-sm">MongoDB</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <AwsLight class="size-12 block dark:hidden" />
+      <AwsDark class="size-12 hidden dark:block" />
+      <span class="mt-1 text-sm">AWS</span>
     </div>
     <div class="flex flex-col items-center">
       <Docker class="size-12" />

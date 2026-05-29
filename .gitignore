@@ -23,3 +23,7 @@ bun.*
 
 package-lock.json
 pnpm-lock.yaml
+
+# working docs (internal, not for the repo)
+NOTES.md
+.claude/

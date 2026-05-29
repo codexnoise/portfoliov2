@@ -1,40 +1,16 @@
 ---
- const personalImageAlt = "Diego Fernando Velesaca Orellana"
+const personalImageAlt = "Diego Fernando Velesaca Orellana"
+import { getLocale, useTranslations } from "@/i18n"
+
+const locale = getLocale(Astro.url)
+const t = useTranslations(locale)
 ---
 
 <article class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row">
   <div
     class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
   >
-    <p>
-      Hola soy Diego, <strong>Ingeniero Electrónico por la Universidad Politécnica Salesiana 
-      de Cuenca</strong>. Profesionalmenete empecé mi carrera desarrollando <strong>firmware 
-      y hardware</strong>
-      para sistemas embebidos. Sin embargo, mi pasión por la tecnología me llevó a explorar nuevos 
-      horizontes, adentrándome en el mundo del <strong>desarrollo de software web y móvil</strong>, 
-      donde hoy canalizo mi creatividad y experiencia técnica.
-    </p>
-
-    <p>
-      <strong>"IN CODE WE TRUST"</strong>. Mi enfoque en el desarrollo de software se centra 
-      en la excelencia del código. Creo firmemente que un <strong>código limpio, basado en 
-      principios sólidos y las mejores prácticas</strong>, es la base de cualquier solución 
-      exitosa. Esta convicción me permite construir aplicaciones robustas, escalables y 
-      fáciles de mantener.
-    </p>
-
-    <p>
-      Participo activamente en <strong>comunidades tech</strong>, valoro profundamente 
-      el poder de las comunidades. Creo firmemente que el aprendizaje y el intercambio de 
-      conocimientos en grupo superan con creces el estudio individual. Actualmente estoy 
-      colaborando como <strong>traductor voluntario</strong> en 
-      <strong>
-        <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">
-          freeCodeCamp,
-        </a>
-      </strong>organización sin fines de lucro que ofrece recursos educativos gratuitos 
-      para aprender desarrollo de software.
-    </p>
+    {t.about.paragraphsHtml.map((html) => <p set:html={html} />)}
   </div>
 
   <img width="200" height="200" src="/me.webp" alt={personalImageAlt} class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20 " style="object-position: 50% 50%">

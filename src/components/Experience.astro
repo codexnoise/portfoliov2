@@ -1,39 +1,47 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro"
-const EXPERIENCE = [
-  {
-    date: "Marzo 2024 - Actualidad",
-    title: "Desarrollador Full-Stack",
-    company: "Dycotein | Fintech",
-    description:
-      "Empresa especializada en el desarrollo de  software para el sector financiero, incluyendo bancos y cooperativas de ahorro y crédito. Soy parte de un equipo multidisciplinario, enfocado en el desarrollo móvil y contribuyendo también en el frontend y backend. Trabajo estrechamente con diseñadores y otros desarrolladores para crear interfaces de usuario intuitivas, así como en la implementación de nuevas funcionalidades y mejoras en el sistema. Además, participo en la corrección de bugs y el mantenimiento de las aplicaciones, asegurando su correcto funcionamiento y optimización en todo momento.",
-    //link: "https://www.dycotein.com/",
-  },
-  {
-    date: "Octubre 2021 - Febrero 2024",
-    title: "Desarrollador de Software",
-    company: "Acatha",
-    description:
-      "Desarrollo de soluciones de software con un enfoque en sistemas ERP diseñados específicamente para el sector empresarial. Colaboré en la migración y optimización de un sistema legacy. En el backend, colaboré en la actualización del lenguaje y framework del sistema a su versión más reciente, logrando una mejora del 25% en la velocidad de respuesta de APIs y microservicios. En el frontend, trabajé en la migración de un sistema legacy a React 16+, lo que permitió optimizar la velocidad y el rendimiento de la interfaz de usuario, mejorando significativamente la experiencia del cliente final.",
-    //link: "https://www.acatha.com/",
-  },
-  {
-    date: "Octubre 2016 - Diciembre 2019",
-    title: "Ingeniero de Desarrollo",
-    company: "Procelec Cia. Ltda",
-    description:
-      "Soluciones tecnológicas para tránsito y movilidad. Desarrollé firmware para sistemas embebidos, creando funcionalidades clave para dispositivos electrónicos, y diseñé hardware para proyectos innovadores relacionados con el Internet de las Cosas (IoT), abarcando desde la conceptualización hasta la implementación.",
-    //link: "https://www.procelec.ec/",
-  },
-]
+import { getLocale, useTranslations } from "@/i18n"
+
+const locale = getLocale(Astro.url)
+const t = useTranslations(locale)
+const EXPERIENCE = t.experience.items
 ---
 
-<ol class="relative mt-16">
+<ol class="relative">
   {
     EXPERIENCE.map((experience) => (
       <li class="">
-        <ExperienceItem {...experience} />
+        <ExperienceItem {...experience} seeMore={t.common.buttons.seeMore} seeLess={t.common.buttons.seeLess} learnMore={t.common.buttons.learnMore} />
       </li>
     ))
   }
 </ol>
+
+<script is:inline data-i18n-experience>
+  function bindExperienceToggles() {
+    document
+      .querySelectorAll('.description-toggle')
+      .forEach((btn) => {
+        if (btn.dataset.bound === 'true') return
+        const clamp = btn.previousElementSibling
+        if (!clamp) return
+
+        if (clamp.scrollHeight <= clamp.clientHeight + 1) return
+        btn.hidden = false
+        btn.dataset.bound = 'true'
+
+        const seeMore = btn.dataset.seeMore || 'Ver más'
+        const seeLess = btn.dataset.seeLess || 'Ver menos'
+
+        btn.addEventListener('click', () => {
+          const isOpen = btn.dataset.state === 'open'
+          clamp.classList.toggle('line-clamp-3', isOpen)
+          btn.dataset.state = isOpen ? 'closed' : 'open'
+          btn.textContent = isOpen ? seeMore : seeLess
+        })
+      })
+  }
+
+  document.addEventListener('astro:page-load', bindExperienceToggles)
+  document.addEventListener('astro:after-swap', bindExperienceToggles)
+</script>

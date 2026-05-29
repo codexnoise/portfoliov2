@@ -2,17 +2,25 @@
 import SunIcon from "./icons/Sun.astro"
 import MoonIcon from "./icons/Moon.astro"
 import SystemIcon from "./icons/System.astro"
+import { getLocale, useTranslations } from "@/i18n"
 
-const THEMES = ["Light", "Dark"]
+const locale = getLocale(Astro.url)
+const t = useTranslations(locale)
+
+const THEMES = [
+  { id: "light", label: t.common.theme.light },
+  { id: "dark", label: t.common.theme.dark },
+  { id: "system", label: t.common.theme.system },
+]
 ---
 
-<div class="relative ml-1 mr-1">
+<div class="relative ml-0.5 mr-0.5 sm:ml-1 sm:mr-1">
   <button
     transition:persist
     id="theme-toggle-btn"
     class="appearance-none border-none flex hover:scale-125 transition"
   >
-    <span class="sr-only">Elige el tema</span>
+    <span class="sr-only">{t.common.theme.label}</span>
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
     <MoonIcon
       id="dark"
@@ -31,8 +39,11 @@ const THEMES = ["Light", "Dark"]
     <ul>
       {
         THEMES.map((theme) => (
-          <li class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
-            {theme}
+          <li
+            class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm"
+            data-theme={theme.id}
+          >
+            {theme.label}
           </li>
         ))
       }
@@ -57,6 +68,10 @@ const THEMES = ["Light", "Dark"]
       opacity: 1;
     }
   }
+
+  .themes-menu-option[data-active="true"] {
+    @apply font-semibold text-yellow-500 dark:text-yellow-200;
+  }
 </style>
 
 <script is:inline>
@@ -80,6 +95,12 @@ const THEMES = ["Light", "Dark"]
     })
   }
 
+  const updateActiveOption = (themePreference) => {
+    document.querySelectorAll(".themes-menu-option").forEach((el) => {
+      el.dataset.active = el.dataset.theme === themePreference ? "true" : "false"
+    })
+  }
+
   const updateTheme = () => {
     if (remove != null) {
       remove()
@@ -95,6 +116,7 @@ const THEMES = ["Light", "Dark"]
       (themePreference === "system" && matchMedia.matches)
 
     updateIcon(themePreference)
+    updateActiveOption(themePreference)
     document.documentElement.classList[isDark ? "add" : "remove"]("dark")
   }
 
@@ -110,7 +132,9 @@ const THEMES = ["Light", "Dark"]
 
   document.querySelectorAll(".themes-menu-option").forEach((element) => {
     element.addEventListener("click", (e) => {
-      localStorage.setItem("theme", e.target.innerText.toLowerCase().trim())
+      const theme = e.currentTarget.dataset.theme
+      if (!theme) return
+      localStorage.setItem("theme", theme)
       updateTheme()
     })
   })

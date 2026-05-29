@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "experience": "Experience",
+    "projects": "Projects",
+    "technologies": "Technologies",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "sections": {
+    "experience": "Work experience",
+    "projects": "Personal projects",
+    "technologies": "Technologies",
+    "about": "About me"
+  },
+  "ctas": {
+    "contact": "Contact me",
+    "linkedin": "LinkedIn",
+    "downloadCv": "Download CV"
+  },
+  "buttons": {
+    "seeMore": "See more",
+    "seeLess": "See less",
+    "learnMore": "Learn more",
+    "code": "Code",
+    "preview": "Preview"
+  },
+  "footer": {
+    "rights": "All rights reserved"
+  },
+  "theme": {
+    "label": "Choose theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "language": {
+    "label": "Change language"
+  },
+  "cvFile": "/docs/CV_DIEGO_VELESACA_FULLSTACK_ENGINEER_EN.pdf"
+}

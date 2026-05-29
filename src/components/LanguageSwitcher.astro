@@ -1,0 +1,125 @@
+---
+import LanguageIcon from "./icons/Language.astro"
+import { getLocale, useTranslations } from "@/i18n"
+
+const locale = getLocale(Astro.url)
+const t = useTranslations(locale)
+---
+
+<div class="relative ml-0.5 mr-0.5 sm:ml-1 sm:mr-1">
+  <button
+    transition:persist
+    id="lang-toggle-btn"
+    type="button"
+    class="appearance-none border-none flex items-center hover:scale-125 transition"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    <span class="sr-only">{t.common.language.label}</span>
+    <LanguageIcon class="size-5 transition-all" />
+    <span id="lang-current" class="ml-1 text-xs font-semibold uppercase">{locale}</span>
+  </button>
+  <div
+    transition:persist
+    id="lang-menu"
+    class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[6rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
+  >
+    <ul>
+      <li class="lang-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm" data-lang="es">
+        Español
+      </li>
+      <li class="lang-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm" data-lang="en">
+        English
+      </li>
+    </ul>
+  </div>
+</div>
+
+<style>
+  #lang-menu.open {
+    display: inline;
+    animation: scale-up-center 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  @keyframes scale-up-center {
+    from { transform: scale(0.8); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+
+  .lang-menu-option[data-active="true"] {
+    @apply font-semibold text-yellow-500 dark:text-yellow-200;
+  }
+</style>
+
+<script is:inline>
+  function getCurrentLocale() {
+    const first = location.pathname.split('/').filter(Boolean)[0]
+    return first === 'en' ? 'en' : 'es'
+  }
+
+  function localizedPathClient(path, locale) {
+    let p = path
+    if (p === '/en' || p === '/en/') p = '/'
+    else if (p.startsWith('/en/')) p = p.slice(3)
+    if (locale === 'es') return p
+    return p === '/' ? '/en/' : '/en' + p
+  }
+
+  function syncLangSwitcher() {
+    const current = getCurrentLocale()
+    const label = document.getElementById('lang-current')
+    if (label) label.textContent = current.toUpperCase()
+    document.querySelectorAll('.lang-menu-option').forEach((el) => {
+      el.dataset.active = el.dataset.lang === current ? 'true' : 'false'
+    })
+  }
+
+  function bindLangSwitcher() {
+    const btn = document.getElementById('lang-toggle-btn')
+    const menu = document.getElementById('lang-menu')
+    if (!btn || !menu) return
+
+    if (!btn.dataset.bound) {
+      btn.dataset.bound = 'true'
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation()
+        const isClosed = !menu.classList.contains('open')
+        menu.classList[isClosed ? 'add' : 'remove']('open')
+        btn.setAttribute('aria-expanded', isClosed ? 'true' : 'false')
+      })
+    }
+
+    document.querySelectorAll('.lang-menu-option').forEach((el) => {
+      if (el.dataset.bound) return
+      el.dataset.bound = 'true'
+      el.addEventListener('click', (e) => {
+        e.stopPropagation()
+        const target = e.currentTarget.dataset.lang
+        if (!target) return
+        try { localStorage.setItem('preferred_lang', target) } catch (_) {}
+        const next = localizedPathClient(location.pathname, target) + location.hash
+        if (next !== location.pathname + location.hash) {
+          window.location.href = next
+        } else {
+          menu.classList.remove('open')
+          btn.setAttribute('aria-expanded', 'false')
+        }
+      })
+    })
+
+    if (!document.body.dataset.langCloseBound) {
+      document.body.dataset.langCloseBound = 'true'
+      document.addEventListener('click', () => {
+        menu.classList.remove('open')
+        btn.setAttribute('aria-expanded', 'false')
+      })
+    }
+
+    syncLangSwitcher()
+  }
+
+  bindLangSwitcher()
+  document.addEventListener('astro:after-swap', () => {
+    bindLangSwitcher()
+  })
+</script>
