@@ -49,6 +49,11 @@ const t = useTranslations(locale)
     {t.home.hero.role}
   </h3>
   <p
+    class="mt-1 text-xl font-semibold tracking-tight text-yellow-500 sm:text-2xl dark:text-yellow-200"
+  >
+    {t.home.hero.specialty}
+  </p>
+  <p
     class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
   >
     {experienceYears} <Fragment set:html={t.home.hero.introHtml} />
